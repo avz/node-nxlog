@@ -105,7 +105,15 @@ NxLog.wrap = function(type, args) {
 
 	var prefix = ts + ' [' + type + ']';
 
-	var lines = NxLog.stringify(args);
+	var lines;
+
+	/* Если только один однострочный аргумент, то выводим его баз кавычек */
+	if(args.length === 1 && typeof(args[0]) === 'string' && args[0].indexOf('\n') === -1) {
+		lines = [args[0]];
+	} else {
+		lines = NxLog.stringify(args);
+	}
+
 	lines[0] = prefix + ' ' + lines[0];
 
 	for(var i = 1; i < lines.length; i++)
