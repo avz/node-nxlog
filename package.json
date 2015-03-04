@@ -1,0 +1,31 @@
+{
+	"name": "nxlog",
+	"version": "0.1.0",
+	"description": "Yet another stderr logger for Node",
+	"keywords": [
+		"log",
+		"logger"
+	],
+	"homepage": "https://github.com/avz/node-nxlog",
+	"repository": {
+		"type" : "git",
+		"url" : "https://github.com/avz/node-nxlog.git"
+	},
+	"license": "BSD",
+	"author": "Artem Zaytsev <arepo@nologin.ru>",
+	"main": "./main.js",
+	"engines": {
+		"node": ">=0.10"
+	},
+
+	"dependencies": {
+	},
+
+	"devDependencies": {
+		"nodeunit": ">=0.8"
+	},
+
+	"scripts": {
+		"test": "./node_modules/nodeunit/bin/nodeunit tests"
+	}
+}
