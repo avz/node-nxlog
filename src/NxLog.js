@@ -84,7 +84,18 @@ NxLog.stringify = function(args) {
 	var lines = [];
 
 	for(var i = 0; i < args.length; i++) {
-		var ls = NxLog.convertToString(args[i]).split('\n');
+		var arg = args[i];
+		var ls;
+
+		/*
+		 * если первый аргумент - однострочная строка, то выдаём его как есть
+		 * без кавычек
+		 */
+		if(i === 0 && typeof(arg) === 'string' && arg.indexOf('\n') === -1) {
+			ls = [arg];
+		} else {
+			ls = NxLog.convertToString(arg).split('\n');
+		}
 
 		if(ls.length === 1) {
 			if(lines.length === 1)
@@ -107,12 +118,7 @@ NxLog.wrap = function(type, args) {
 
 	var lines;
 
-	/* Если только один однострочный аргумент, то выводим его баз кавычек */
-	if(args.length === 1 && typeof(args[0]) === 'string' && args[0].indexOf('\n') === -1) {
-		lines = [args[0]];
-	} else {
-		lines = NxLog.stringify(args);
-	}
+	lines = NxLog.stringify(args);
 
 	lines[0] = prefix + ' ' + lines[0];
 
